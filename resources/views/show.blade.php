@@ -16,27 +16,13 @@
         @foreach($products as $product)
         <div class="product {{$product['id']==1?'active':''}}">
             <a href="detail/{{$product['id']}}">
-                <img src="doce_batata1.jpg" alt="Bata Doce">
+                <img src="doce_batata1.jpg" alt="{{$product['name']}}">
                 <h3>{{$product['name']}}</h3>
                 <h4>{{$product['category']}}</h4>
                 <h4>{{$product['price']}}</h4>
                 <h5>{{$product['description']}}</h5>
             </a>
         </div>
-
         @endforeach
-        
-    </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-        <span class="sr-only">Next</span>
-    </a>
-    </div>             
-
+    </div>         
 @endsection

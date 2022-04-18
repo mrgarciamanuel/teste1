@@ -34,13 +34,14 @@
                         <li class="nav-item">
                             <a href="/create" class="nav-link">Criar produtos</a>
                         </li>
+                        
+                        <li class="nav-item">
+                            <a href="/cartlist" class="nav-link">Carinho({{$total}})</a>
+                        </li>
+                    
                         @auth
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Carinho({{$total}})</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">User dashboard</a>
+                            <a href="/dashboard" class="nav-link">User dashboard</a>
                         </li>
 
                         <li class="nav-item">

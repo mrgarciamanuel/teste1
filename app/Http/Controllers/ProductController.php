@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
-use Session;
+use App\Models\user;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
+
 class ProductController extends Controller
 {
     //
@@ -39,6 +42,10 @@ class ProductController extends Controller
     //função para detalhar determinado produto
     function detail($id){
         $product = Product::find($id);
+
+        //encontrar o creador do produto: futuramente ligar o produto ao seu criador - ligar a tabela produto com a tabela utilizador
+        //$productCreator = User::where('id', $product->user_id)->first()->toArray();
+
         return view('detail',['product'=>$product]);
     }
 
@@ -70,6 +77,25 @@ class ProductController extends Controller
         //retornar o total de vezes de objetos 
         //da classe carinho associados a um determinado utilizador
         return Cart::where('user_id',$userId)->count();
+
+    }
+
+    public function cartlist(){
+        //lista de produtos no carrinho com innerjoin
+        $user = auth()->user();//verificar autentificação do utilizador
+        $userId = $user->id;//variavel userId recebe o identificador do
+        $products = DB::table('cart')
+        ->join('products','cart.product_id','=','products.id')
+        ->where('cart.user_id',$userId)
+        ->select('products.*')
+        ->get();
+        return view ('cartlist',['products'=>$products]);
+    }
+
+    public function dashboard(){
+        $user = auth()->user();
+
+        return view('dashboard');
 
     }
 }

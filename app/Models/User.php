@@ -58,4 +58,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function carrinho(){
+        return $this->hasMany('App\Models\Cart');
+    }
 }

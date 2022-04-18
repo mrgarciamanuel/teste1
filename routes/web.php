@@ -37,12 +37,18 @@ Route::get('detail/{id}', [ProductController::class, 'detail']);
 Route::get('search', 
 [ProductController::class, 'search']);
 
+//rota que da acesso a dashboard, só tera acesso a ela os utilizadores logados no sistema
+Route::get('/dashboard',[EventController::class, 'dashboard'])->middleware('auth');
+
 //rota que adiciona produtos ao cesto
 //a rota de adicionar produtos ao cesto só estara disponível 
 //para utilizadores logados
 Route::post('add_to_cart', 
 [ProductController::class, 'addToCart'])->middleware('auth');
 
+//rota que permite listar os produtos no carrinho de compras
+Route::get('cartlist', 
+[ProductController::class, 'cartlist']);
 
 Route::middleware([
     'auth:sanctum',
