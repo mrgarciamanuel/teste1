@@ -11,7 +11,6 @@ use App\Http\Controllers\Auth;
 
 class ProductController extends Controller
 {
-    //
     //função que exibe a página de index
     public function index(){
         //chamando todos produtos para a view
@@ -68,7 +67,6 @@ class ProductController extends Controller
         $cart->product_id = $pedido->product_id;
         $cart->save();
         return redirect('show');
-    
     }
 
     static function cartItem(){
@@ -77,24 +75,61 @@ class ProductController extends Controller
         //retornar o total de vezes de objetos 
         //da classe carinho associados a um determinado utilizador
         return Cart::where('user_id',$userId)->count();
-
     }
 
-    public function cartlist(){
+    public function cartList(){
         //lista de produtos no carrinho com innerjoin
         $user = auth()->user();//verificar autentificação do utilizador
         $userId = $user->id;//variavel userId recebe o identificador do
         $products = DB::table('cart')
         ->join('products','cart.product_id','=','products.id')
         ->where('cart.user_id',$userId)
-        ->select('products.*')
+        ->select('products.*','cart.id as cart_id')
         ->get();
         return view ('cartlist',['products'=>$products]);
     }
 
+    public function removeFromCart($id){
+        Cart::destroy($id);
+        return redirect("/cartlist");
+
+    }
+
+    public function store(Request $pedido){
+        //instanciação do objeto Product através do Model Product que foi chamado em cima
+        $product = new Product;
+        
+        //atributos do objeto criado
+        $product->name = $pedido->name;
+        $product->price = $pedido->price;
+        $product->category = $pedido->category;
+        $product->description = $pedido->description;
+        
+        //upload da imagem
+        if ($pedido->hasFile('image') && $pedido->file('image')->isValid()){
+            //encapsular os dados da imagem em numa variável
+            $imagePedido = $pedido->image;
+            
+            //a extensão da imegem vai receber  o atributo extensão do elemento criande em cima
+            $extension = $imagePedido->extension();
+
+            //no final o nome da imagem será o nome original + mais tempo atual + a extensão
+            //tudo fica dentro do md5 para criar uma rash
+            $imageName = md5($imagePedido->getClientOriginalName().strtotime("now")).".".$extension;
+
+            //guardando a imagem no diretorio do projeto
+            $pedido->image->move(public_path('img/products'),$imageName);
+
+            $product->image = $imageName;
+        }
+        
+        $product->save();
+        
+        return redirect ('show');
+    }
+
     public function dashboard(){
         $user = auth()->user();
-
         return view('dashboard');
 
     }

@@ -22,9 +22,16 @@ Route::get('/', function () {
 //rota que leva até a página inicial do site
 Route::get('/', [ProductController::class, 'index']); 
 
+//rota que adiciona produtos na loja
+//a rota de adicionar produtosna loja só estara disponível 
+//para utilizadores logados
 
-//rota que leva até a página de criar produtos
-Route::get('create', [ProductController::class, 'create']);
+Route::post('/products', 
+[ProductController::class, 'store'])->middleware('auth');
+
+//rota que da acesso a página de criar produtos
+Route::get('/create', 
+[ProductController::class, 'create'])->middleware('auth');
 
 //rota que leva até a página de visualizar somente nos produtos
 Route::get('show', [ProductController::class, 'show']);
@@ -48,7 +55,11 @@ Route::post('add_to_cart',
 
 //rota que permite listar os produtos no carrinho de compras
 Route::get('cartlist', 
-[ProductController::class, 'cartlist']);
+[ProductController::class, 'cartList']);
+
+//rota que permite remover os produtos no carrinho de compras
+Route::get('remove_from_cart/{id}', 
+[ProductController::class, 'removeFromCart']);
 
 Route::middleware([
     'auth:sanctum',

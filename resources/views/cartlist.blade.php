@@ -6,11 +6,9 @@
         @foreach($products as $product)
         <div class="">
             <a href="detail/{{$product->id}}">
-                <img src="doce_batata1.jpg" alt="{{$product->name}}">
-                <h3>{{$product->name}}</h3>
-                <h4>{{$product->category}}</h4>
-                <h4>{{$product->price}}</h4>
-            </a>
+                <img src="/img/products/{{$product->image}}" alt="{{$product->name}}">
+                <h3>{{$product->name}}</h3></a>  
+                <a href="/remove_from_cart/{{$product->cart_id}}">Retirar do cesto</a><br><br>          
         </div>
         @endforeach       
     </div>
