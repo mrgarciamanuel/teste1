@@ -92,7 +92,18 @@ class ProductController extends Controller
     public function removeFromCart($id){
         Cart::destroy($id);
         return redirect("/cartlist");
+    }
 
+    public function orderNow(){
+        $user = auth()->user();//verificar autentificação do utilizador
+        $userId = $user->id;//variavel userId recebe o identificador do
+        
+        $totPriceCarrinho= $products = DB::table('cart')
+        ->join('products','cart.product_id','=','products.id')
+        ->where('cart.user_id',$userId)
+        ->sum('products.price');//fazer a soma do preço de todos produtos no carrinho
+        
+        return view ('ordernow',['totPriceCarrinho'=>$totPriceCarrinho]);
     }
 
     public function store(Request $pedido){

@@ -61,6 +61,10 @@ Route::get('cartlist',
 Route::get('remove_from_cart/{id}', 
 [ProductController::class, 'removeFromCart']);
 
+
+//rota que permite efectuar compra
+Route::get('ordernow',[ProductController::class,'orderNow']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

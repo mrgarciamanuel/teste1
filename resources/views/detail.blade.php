@@ -8,7 +8,7 @@
         <img src="{{$product['gallery']}}" alt="{{$product['name']}}">
         <h1>Nome: {{$product['name']}}</h1>
         <h4>Categoria: {{$product['category']}}</h4>
-        <h3>Preço: {{$product['price']}} Kz</h3>
+        <h3>Preço: {{$product['price']}},00 AOA</h3>
         <h4>Peso: 1 kg</h4>
         <h4>Descrição: {{$product['description']}}</h4>
         <br>
