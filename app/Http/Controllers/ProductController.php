@@ -186,7 +186,6 @@ class ProductController extends Controller
 
     public function dashboard(){
         return view ('dashboard');
-
     }
 
     public function productlist(){
@@ -194,5 +193,11 @@ class ProductController extends Controller
         //$products = $user->products;
         $products = Product::all();
         return view ("productlist",['products'=>$products]); 
+    }
+
+    public function destroy($id){
+        Product::findOrFail($id)->delete();
+
+        return redirect('productlist')->with('msg', 'Produto excluido');
     }
 }

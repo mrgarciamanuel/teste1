@@ -22,7 +22,15 @@
                 <td><a href="/products/{{$product->id}}">{{$product->name}}</a></td>
                 <td><a href="/products/{{$product->price}}">{{$product->price}}</a></td>
                 <td><a href="/products/{{$product->category}}">{{$product->category}}</a></td>
-                <td><a href="#">Editar</a><a href="#">Deletar</a></td>
+                <td>
+                    <a href="#" class="btn btn-info edit-btn">Editar</a>
+                    <form action="/products/{{$product->id}}" method="POST">
+                        @csrf
+                        @method('Delete')
+                        <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
+
+                    </form>
+                </td>
                 
             </tr>
             @endforeach

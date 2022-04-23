@@ -76,6 +76,9 @@ Route::post('orderplace',[ProductController::class,'orderPlace']);
 Route::get('myorders', 
 [ProductController::class, 'myOrders']);
 
+//rota que permite ao admin deletar produtos
+Route::delete('/products/{id}', [ProductController::class,'destroy']);
+
 /*
 Route::middleware([
     'auth:sanctum',
