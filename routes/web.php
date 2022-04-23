@@ -65,6 +65,13 @@ Route::get('remove_from_cart/{id}',
 //rota que permite efectuar compra
 Route::get('ordernow',[ProductController::class,'orderNow']);
 
+//rota que epermite finalizar compra
+Route::post('orderplace',[ProductController::class,'orderPlace']);
+
+//rota que permite remover os produtos no carrinho de compras
+Route::get('myorders', 
+[ProductController::class, 'myOrders']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

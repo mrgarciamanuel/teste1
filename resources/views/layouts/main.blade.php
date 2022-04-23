@@ -45,6 +45,10 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="/myorders" class="nav-link">Compras</a>
+                        </li>
+
+                        <li class="nav-item">
                             <form action="/logout" method="POST">
                                 @csrf
                                 <a href="/logout" class="nav-link" 

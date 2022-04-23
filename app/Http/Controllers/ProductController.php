@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\user;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
+
 
 class ProductController extends Controller
 {
@@ -94,6 +96,7 @@ class ProductController extends Controller
         return redirect("/cartlist");
     }
 
+    //rota que 
     public function orderNow(){
         $user = auth()->user();//verificar autentificação do utilizador
         $userId = $user->id;//variavel userId recebe o identificador do
@@ -105,6 +108,43 @@ class ProductController extends Controller
         
         return view ('ordernow',['totPriceCarrinho'=>$totPriceCarrinho]);
     }
+
+    //
+    public function orderPlace(Request $pedido){
+        $user = auth()->user();//verificar autentificação do utilizador
+        $userId = $user->id;//variavel userId recebe o identificador do
+        $allCart = Cart::where('user_id',$userId)->get(); //pegando de novo o carrinho cujo id_user seja igual ao id do utilizador
+
+        foreach($allCart as $cart){
+            $order = new Order;
+            $order->product_id=$cart['product_id'];
+            $order->user_id=$cart['user_id'];
+            $order->status="Pendente";
+            $order->payment_method=$pedido->payment;
+            $order->payment_status="Pendente";
+            $order->address=$pedido->address;
+
+            $order->save();
+
+            Cart::where('user_id',$userId)->delete();//esvaziando o carrinho depois de afectuada compra
+        }
+        return redirect("/");
+    }
+
+    //rota que permite mostrar as compras feitas por um utilizador
+    //para tal, é necessário fazer join entre as tablelas orders e produtos
+    public function myOrders(){
+        $user = auth()->user();//verificar autentificação do utilizador
+        $userId = $user->id;//variavel userId recebe o identificador do
+       $orders = DB::table('orders')
+        ->join('products','orders.product_id','=','products.id')
+        ->where('orders.user_id',$userId)
+        ->get();
+
+        //return ("Feito");
+        return view('myorders',['orders'=>$orders]);
+
+    } 
 
     public function store(Request $pedido){
         //instanciação do objeto Product através do Model Product que foi chamado em cima
