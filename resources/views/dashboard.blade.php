@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('title','Kitunda - User dashboard')
+@extends('layouts.userdashboard')
+@section('title','Kitunda - Ver produtos')
 @section('content')
-<h1>Dashboard do utilizador</h1>
+<h1>Página de perfil do utilizador</h1>
 @endsection

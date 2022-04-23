@@ -15,9 +15,7 @@ use App\Http\Controllers\UserController;
 |
 */
 /*
-Route::get('/', function () {
-    return view('welcome');
-});
+
 */
 //rota que leva até a página inicial do site
 Route::get('/', [ProductController::class, 'index']); 
@@ -45,7 +43,13 @@ Route::get('search',
 [ProductController::class, 'search']);
 
 //rota que da acesso a dashboard, só tera acesso a ela os utilizadores logados no sistema
-Route::get('/dashboard',[EventController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard', [ProductController::class, 'dashboard']);
+
+//rota que da acesso ao admin o acesso aos produtos cadastrados no sistema
+Route::get('/productlist', [ProductController::class, 'productlist']);
+
+//rota que da acesso a dashboard, só tera acesso a ela os utilizadores logados no sistema
+Route::get('/perfil', [ProductController::class, 'perfil']);
 
 //rota que adiciona produtos ao cesto
 //a rota de adicionar produtos ao cesto só estara disponível 
@@ -72,6 +76,7 @@ Route::post('orderplace',[ProductController::class,'orderPlace']);
 Route::get('myorders', 
 [ProductController::class, 'myOrders']);
 
+/*
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -81,3 +86,4 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+*/

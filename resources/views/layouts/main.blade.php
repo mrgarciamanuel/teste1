@@ -1,16 +1,16 @@
-        <?php
-            use App\Http\Controllers\ProductController;
-            use Illuminate\Support\Facades\Auth;
-            //se o utilizador não estiver autenticado, 
-            //o carrinho estará sempre zerado 
-            $total = 0;
+<?php
+    use App\Http\Controllers\ProductController;
+    use Illuminate\Support\Facades\Auth;
+    //se o utilizador não estiver autenticado, 
+    //o carrinho estará sempre zerado 
+    $total = 0;
 
-            //se o utilizador estiver logado, será exibido o
-            //número de produtos no carrinho
-            if ($user = auth()->user()){
-            $total = ProductController::cartItem();
-            }
-        ?>
+    //se o utilizador estiver logado, será exibido o
+    //número de produtos no carrinho
+    if ($user = auth()->user()){
+    $total = ProductController::cartItem();
+    }
+?>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -41,12 +41,12 @@
                     
                         @auth
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link">User dashboard</a>
+                            <a href="/perfil" class="nav-link">User dashboard</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a href="/myorders" class="nav-link">Compras</a>
-                        </li>
+                        </li>-->
 
                         <li class="nav-item">
                             <form action="/logout" method="POST">
@@ -69,6 +69,14 @@
                         @endguest
                         
                     </ul>
+                    <!-- @auth
+                        @if($user->id==1)
+                            <li class="nav-item">
+                                <a href="/show" class="nav-link">Admin</a>
+                            </li>
+                        @endif
+                    @endauth 
+                -->
                     <!--Formulário que fez pesquisa de produtos 
                     do utilizador-->
                     <form action="search">

@@ -177,11 +177,22 @@ class ProductController extends Controller
         $product->save();
         
         return redirect ('show');
+    }  
+
+    public function perfil(){
+        return view ('perfil');
+
     }
 
     public function dashboard(){
-        $user = auth()->user();
-        return view('dashboard');
+        return view ('dashboard');
 
+    }
+
+    public function productlist(){
+        $user = auth()->user();
+        //$products = $user->products;
+        $products = Product::all();
+        return view ("productlist",['products'=>$products]); 
     }
 }
