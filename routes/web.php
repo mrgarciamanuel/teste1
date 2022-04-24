@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,6 @@ Route::get('/', [ProductController::class, 'index']);
 //rota que adiciona produtos na loja
 //a rota de adicionar produtosna loja só estara disponível 
 //para utilizadores logados
-
 Route::post('/products', 
 [ProductController::class, 'store'])->middleware('auth');
 
@@ -70,15 +70,23 @@ Route::get('remove_from_cart/{id}',
 Route::get('ordernow',[ProductController::class,'orderNow']);
 
 //rota que epermite finalizar compra
-Route::post('orderplace',[ProductController::class,'orderPlace']);
+Route::post('orderplace',[ProductController::class,'orderPlace'])->middleware('auth');;
 
 //rota que permite remover os produtos no carrinho de compras
 Route::get('myorders', 
-[ProductController::class, 'myOrders']);
+[ProductController::class, 'myOrders'])->middleware('auth');;
 
 //rota que permite ao admin deletar produtos
-Route::delete('/products/{id}', [ProductController::class,'destroy']);
+Route::delete('/products/{id}', [ProductController::class,'destroy'])->middleware('auth');;
 
+//rota que permite ao admin deleditar produtos
+Route::get('/edit/{id}', [ProductController::class,'edit'])->middleware('auth');;
+
+//rota que permite contacto
+Route::get('/contact',[FormController::class,'contact']);
+
+Route::post('/contact', 
+[FormController::class, 'store']);
 /*
 Route::middleware([
     'auth:sanctum',

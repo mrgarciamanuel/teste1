@@ -38,6 +38,10 @@
                         <li class="nav-item">
                             <a href="/cartlist" class="nav-link">Carinho({{$total}})</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="/contact" class="nav-link">Contacte-nos</a>
+                        </li>
                     
                         @auth
                         <li class="nav-item">

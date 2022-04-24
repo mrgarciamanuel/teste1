@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Form;
 use App\Models\user;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
@@ -200,4 +201,11 @@ class ProductController extends Controller
 
         return redirect('productlist')->with('msg', 'Produto excluido');
     }
+
+    public function edit($id){
+       $product =  Product::findOrFail($id);
+        return redirect('edit',['products'=>$product]);
+
+    }
+    
 }
