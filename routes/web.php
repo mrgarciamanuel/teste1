@@ -42,6 +42,10 @@ Route::get('detail/{id}', [ProductController::class, 'detail']);
 Route::get('search', 
 [ProductController::class, 'search']);
 
+//rota para pesquisa de produtos
+Route::get('cat_search', 
+[ProductController::class, 'cat_search']);
+
 //rota que da acesso a dashboard, só tera acesso a ela os utilizadores logados no sistema
 Route::get('/dashboard', [ProductController::class, 'dashboard']);
 

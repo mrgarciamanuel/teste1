@@ -22,6 +22,8 @@ class FormController extends Controller
 
         return redirect ('/');
     }
+	
+	//função que permite ter acesso a página de contactos
     public function contact(){
         return view ('contact');
     }

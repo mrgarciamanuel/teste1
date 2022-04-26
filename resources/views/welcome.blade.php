@@ -8,7 +8,8 @@
     <a href="detail/{{$product['id']}}">
         <img src="/img/products/{{$product->image}}" alt="{{$product['name']}}">
     <p>{{$product->name}}</p></a>
-    <p>{{$product->price}},00 AOA </p>
+    <p>{{$product->description}}</p></a>
+    <h4>Categoria: {{$product->category->name}}</h4>
 
     <form action="/add_to_cart" method="POST">
         @csrf

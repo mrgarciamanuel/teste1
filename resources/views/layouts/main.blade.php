@@ -31,9 +31,6 @@
                         <li class="nav-item">
                             <a href="/show" class="nav-link">Produtos</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/create" class="nav-link">Criar produtos</a>
-                        </li>
                         
                         <li class="nav-item">
                             <a href="/cartlist" class="nav-link">Carinho({{$total}})</a>
@@ -42,7 +39,9 @@
                         <li class="nav-item">
                             <a href="/contact" class="nav-link">Contacte-nos</a>
                         </li>
-                    
+                        <!--<li class="nav-item">
+                            <a href="/cat_search" class="nav-link">Pesuisa por categoria</a>
+                        </li>-->
                         @auth
                         <li class="nav-item">
                             <a href="/perfil" class="nav-link">User dashboard</a>

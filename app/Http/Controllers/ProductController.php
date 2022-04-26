@@ -11,13 +11,15 @@ use App\Models\user;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
 
-
 class ProductController extends Controller
 {
     //função que exibe a página de index
     public function index(){
         //chamando todos produtos para a view
-        $products = Product::all();
+        //$products = Product::all();
+
+        //$products = Product::all();
+       $products = Product::with('category')->get();//'category' faz referência ao nome da relação que foi criada no model Product
 
         //mostrar todos produtos que colocamos na variável products
         return view ("welcome",['products'=>$products]);
@@ -44,6 +46,7 @@ class ProductController extends Controller
     //função para detalhar determinado produto
     function detail($id){
         $product = Product::find($id);
+        
 
         //encontrar o creador do produto: futuramente ligar o produto ao seu criador - ligar a tabela produto com a tabela utilizador
         //$productCreator = User::where('id', $product->user_id)->first()->toArray();
@@ -59,6 +62,19 @@ class ProductController extends Controller
         where('name','like','%'.$pedido->input('query').'%')
         ->get();
         return view('search',['products'=>$product]);
+    }
+
+    function cat_search(Request $pedido){
+        //$product = Product::all();
+        //if ($product->category_id == $pedido->input('query')){
+        //return $pedido->input();
+        $product = Product::
+        where('category_id','like','%'.$pedido->input('query').'%')
+        ->get();
+        return view('cat_search',['products'=>$product]);
+       // return view ('cat_search',['products'=>$product]);
+    
+        
     }
 
     //o request é utilizado sempre que precisamos dados do formulario
@@ -154,8 +170,8 @@ class ProductController extends Controller
         //atributos do objeto criado
         $product->name = $pedido->name;
         $product->price = $pedido->price;
-        $product->category = $pedido->category;
         $product->description = $pedido->description;
+        $product->category_id = $pedido->category_id;
         
         //upload da imagem
         if ($pedido->hasFile('image') && $pedido->file('image')->isValid()){

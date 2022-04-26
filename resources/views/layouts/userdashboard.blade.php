@@ -38,6 +38,9 @@
                                 <li class="nav-item">
                                     <a href="/productlist" class="nav-link">Produtos</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="/create" class="nav-link">Criar produtos</a>
+                                </li>
                             @endif
 
                             <li class="nav-item">
