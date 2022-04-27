@@ -16,16 +16,16 @@
 @section('content')
 <h1>Carrinho de produtos</h1>
 <div class="carousel-inner">
-    <a href="/ordernow">Finalizar compra</a><br><br>
+    <a href="/ordernow" class="btn btn-primary">Finalizar compra</a><br><br>
     @foreach($products as $product)
     <div class="">
         <a href="detail/{{$product->id}}">
-            <img src="/img/products/{{$product->image}}" alt="{{$product->name}}">
+            <img src="/img/products/{{$product->image}}" widt="300" height="300" alt="{{$product->name}}">
             <h3>{{$product->name}}</h3></a>  
-            <a href="/remove_from_cart/{{$product->cart_id}}">Retirar do cesto</a><br><br>          
+            <a href="/remove_from_cart/{{$product->cart_id}}" class="btn btn-danger">Retirar do cesto</a><br><br>          
     </div>
     @endforeach  
     <a href="#">{{$totPriceCarrinhio}}</a><br><br> 
-    <a href="/ordernow">Finalizar compra</a><br><br>    
+    <a href="/ordernow" class="btn btn-primary">Finalizar compra</a><br><br>    
     </div>
 @endsection

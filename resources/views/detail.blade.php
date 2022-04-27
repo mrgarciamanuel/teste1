@@ -5,7 +5,7 @@
 
 <div class="container">
     <div class="col-sm-6">
-        <img src="{{$product['gallery']}}" alt="{{$product['name']}}">
+        <img src="/img/products/{{$product->image}}" alt="{{$product['name']}}">
         <h1>Nome: {{$product['name']}}</h1>
         <h4>Categoria: {{$product->category->name}}</h4>
         <h3>Preço: {{$product['price']}},00 AOA</h3>

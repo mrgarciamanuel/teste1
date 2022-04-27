@@ -17,6 +17,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield ('title')</title>
         <link rel="stylesheet" href="/css/estilo.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
        
     </head>
     <body class="antialiased">
@@ -38,6 +39,10 @@
 
                         <li class="nav-item">
                             <a href="/contact" class="nav-link">Contacte-nos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/about" class="nav-link">Sobre</a>
                         </li>
                         <!--<li class="nav-item">
                             <a href="/cat_search" class="nav-link">Pesuisa por categoria</a>
@@ -85,15 +90,23 @@
                     <form action="search">
                         <div>
                             <input type="text" name="query" class="" placeholder="Pesquise por um produto">
-                            <button type="submit" class="btn btn-default">Pesquisar</button>
+                            <button type="submit" class="btn btn-primary">Pesquisar</button>
                         </div>
                     </form>
                 </div>
             </nav>
         </header>   
     @yield('content')
-    <footer>
-        <p>Kitunda &copy; 2022</p>
+
+
+    
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">KITUNDA</a>
+        </div>
+        <!-- Copyright -->
     </footer>
     </body>
 </html>

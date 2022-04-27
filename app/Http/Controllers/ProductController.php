@@ -25,10 +25,7 @@ class ProductController extends Controller
         return view ("welcome",['products'=>$products]);
     } 
 
-    //função para criação de produtos
-    public function create(){
-        return view('create');
-    }
+   
 
     //função para visualização de produtos
     public function show(){
@@ -42,6 +39,11 @@ class ProductController extends Controller
         return view('show', ['products'=>$product]);
         //return view('products.show',['products'=>$products]);
     }
+
+    //função responsável por chamar a página about
+    public function about(){
+        return view ('about');
+    }  
 
     //função para detalhar determinado produto
     function detail($id){

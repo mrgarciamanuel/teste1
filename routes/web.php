@@ -42,6 +42,9 @@ Route::get('detail/{id}', [ProductController::class, 'detail']);
 Route::get('search', 
 [ProductController::class, 'search']);
 
+//rora para a página about
+Route::get('/about',[ProductController::class,'about']);
+
 //rota para pesquisa de produtos
 Route::get('cat_search', 
 [ProductController::class, 'cat_search']);
