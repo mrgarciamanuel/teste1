@@ -20,7 +20,7 @@
                     <input type="hidden" name="product_id" value="{{$product['id']}}">
                     <button class="btn btn-primary">Adicionar ao cesto</button>
                 </form>
-                <button class="btn btn-primary">Ver detalhes</button><br><br>
+                <a class="btn btn-primary" href="detail/{{$product['id']}}">Ver detalhes</a><br><br>
         </div>
         @endforeach
     </div>         

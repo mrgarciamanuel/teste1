@@ -3,6 +3,7 @@
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -38,6 +39,8 @@ Route::get('show', [ProductController::class, 'show']);
 //as paginas de cada produto serão pegadas pelos seus id
 Route::get('detail/{id}', [ProductController::class, 'detail']);
 
+Route::get('category/', [ProductController::class, 'category']);
+
 //rota para pesquisa de produtos
 Route::get('search', 
 [ProductController::class, 'search']);
@@ -64,9 +67,19 @@ Route::get('/perfil', [ProductController::class, 'perfil']);
 Route::post('add_to_cart', 
 [ProductController::class, 'addToCart'])->middleware('auth');
 
+//rota que adiciona produtos aos favoritos
+//a rota de adicionar produtos aos favoritos só estara disponível 
+//para utilizadores logados
+Route::post('add_to_favo', 
+[ProductController::class, 'addToFavo'])->middleware('auth');
+
 //rota que permite listar os produtos no carrinho de compras
 Route::get('cartlist', 
-[ProductController::class, 'cartList']);
+[ProductController::class, 'cartList'])->middleware('auth');
+
+//rota que permite listar os produtos nos favoritos de um utilizador
+Route::get('favolist', 
+[ProductController::class, 'favoList'])->middleware('auth');
 
 //rota que permite remover os produtos no carrinho de compras
 Route::get('remove_from_cart/{id}', 
