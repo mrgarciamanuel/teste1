@@ -165,6 +165,12 @@ class ProductController extends Controller
 
     } 
 
+    //Função que vai pegar a view de criaçãpo de produtos
+    public function create(){
+        return view('create');
+    }
+
+    //Função que permite criar um novo produtos no sistema
     public function store(Request $pedido){
         //instanciação do objeto Product através do Model Product que foi chamado em cima
         $product = new Product;

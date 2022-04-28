@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.userdashboard')
 @section('title','Kitunda - Criar produtos')
 @section('content')
 <h1>Criar produtos</h1>
