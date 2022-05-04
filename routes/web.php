@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeliveryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,13 @@ Route::post('/products',
 //rota que da acesso a página de criar produtos
 Route::get('/create', 
 [ProductController::class, 'create'])->middleware('auth');
+
+//rota que permite aceder a pagina de deliver
+Route::get('delivery',[DeliveryController::class,'delivery'])->middleware('auth');
+
+//rota que permite adicionar dados de envio
+Route::post('/add_delivery_info',[DeliveryController::class,'addDeliveryInfo'])->middleware('auth');
+
 
 //rota que leva até a página de visualizar somente nos produtos
 Route::get('show', [ProductController::class, 'show']);
@@ -90,7 +98,8 @@ Route::get('remove_from_cart/{id}',
 Route::get('ordernow',[ProductController::class,'orderNow']);
 
 //rota que epermite finalizar compra
-Route::post('orderplace',[ProductController::class,'orderPlace'])->middleware('auth');;
+Route::post('orderplace',[ProductController::class,'orderPlace'])->middleware('auth');
+
 
 //rota que permite remover os produtos no carrinho de compras
 Route::get('myorders', 
@@ -107,6 +116,8 @@ Route::get('/contact',[FormController::class,'contact']);
 
 Route::post('/contact', 
 [FormController::class, 'store']);
+
+
 /*
 Route::middleware([
     'auth:sanctum',

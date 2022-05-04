@@ -9,4 +9,8 @@ class Order extends Model
 {
     use HasFactory;
      public $timestamps = false;
+
+     public function delivery(){
+        return $this->hasOne(Delivery::class);
+     }
 }

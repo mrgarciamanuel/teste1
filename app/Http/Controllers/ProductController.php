@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Favorito;
 use App\Models\Form;
 use App\Models\user;
+use App\Models\Delivery;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Auth;
 
@@ -50,7 +51,6 @@ class ProductController extends Controller
     function detail($id){
         $product = Product::find($id);
         
-
         //encontrar o creador do produto: futuramente ligar o produto ao seu criador - ligar a tabela produto com a tabela utilizador
         //$productCreator = User::where('id', $product->user_id)->first()->toArray();
 
@@ -182,8 +182,10 @@ class ProductController extends Controller
 
             Cart::where('user_id',$userId)->delete();//esvaziando o carrinho depois de afectuada compra
         }
-        return redirect("/");
+        return redirect("/delivery");
     }
+
+    
 
     //rota que permite mostrar as compras feitas por um utilizador
     //para tal, é necessário fazer join entre as tablelas orders e produtos
@@ -234,10 +236,13 @@ class ProductController extends Controller
             $product->image = $imageName;
         }
         
+        //salvar os dados, todo obketo criando em laravel por omissão já tem uma função save()
         $product->save();
         
         return redirect ('show');
     }  
+
+    
 
     public function perfil(){
         return view ('perfil');
