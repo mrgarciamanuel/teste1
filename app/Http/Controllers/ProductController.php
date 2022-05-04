@@ -115,7 +115,7 @@ class ProductController extends Controller
     static function cartItem(){
         $user = auth()->user();//verificar autentificação do utilizador
         $userId = $user->id;//variavel userId recebe o identificador do utilizador
-        //retornar o total de vezes de objetos 
+        //retorna o total de vezes que objetos 
         //da classe carinho associados a um determinado utilizador
         return Cart::where('user_id',$userId)->count();
     }

@@ -10,7 +10,7 @@
             <a href="detail/{{$product['id']}}">
                 <img src="/img/products/{{$product->image}}" widt="300" height="300" alt="{{$product['name']}}">
                 <h3>{{$product['name']}}</h3></a>
-                <h4>Categoria: {{$product->category->name}}</h4>
+                <h4>Categoria: {{$product->category_id}}</h4>
                 <h4>{{$product['price']}},00 AOA </h4>
                 <h5>{{$product['description']}}</h5> 
                 
