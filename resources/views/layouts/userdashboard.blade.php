@@ -47,6 +47,10 @@
                             @endif
 
                             <li class="nav-item">
+                                <a href="delivers" class="nav-link">Envios</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a href="/" class="nav-link">Acesso a loja</a>
                             </li>  
                             

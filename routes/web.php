@@ -39,6 +39,9 @@ Route::get('delivery',[DeliveryController::class,'delivery'])->middleware('auth'
 //rota que permite adicionar dados de envio
 Route::post('/add_delivery_info',[DeliveryController::class,'addDeliveryInfo'])->middleware('auth');
 
+//rota que permite mostar os envios de um cliente
+Route::get('delivers',[DeliveryController::class,'showDelivers'])->middleware('auth');
+
 
 //rota que leva até a página de visualizar somente nos produtos
 Route::get('show', [ProductController::class, 'show']);
@@ -61,7 +64,13 @@ Route::get('cat_search',
 [ProductController::class, 'cat_search']);
 
 //rota que da acesso a dashboard, só tera acesso a ela os utilizadores logados no sistema
-Route::get('/dashboard', [ProductController::class, 'dashboard']);
+Route::get('/dashboard', [UserController::class, 'dashboard']);
+
+//rota que permite editar os dados do utilizador
+Route::get('/edituser/{id}',[UserController::class,'edituser'])->middleware('auth');
+
+//rota que atualiza os dados do utilizador
+Route::put('/edituser/{id}',[UserController::class,'udateUser'])->middleware('auth');
 
 //rota que da acesso ao admin o acesso aos produtos cadastrados no sistema
 Route::get('/productlist', [ProductController::class, 'productlist']);

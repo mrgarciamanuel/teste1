@@ -16,12 +16,12 @@
         <h5>Envio: {{$pedido->status}}</h5> 
         <h5>Endereço: {{$pedido->address}}</h5> 
         <h5>Método de pagamento :{{$pedido->payment_method}}</h5> 
-        <h5>Estado do pedido :{{$pedido->payment_status}}</h5>  
-             
+        <h5>Estado do pedido :{{$pedido->payment_status}}</h5>       
+          
     </div>
 
     @endforeach  
     
         
-    </div>
+</div>
 @endsection

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Delivery;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Auth;
+use App\Models\Product;
 
 class DeliveryController extends Controller
 {
@@ -33,7 +36,24 @@ class DeliveryController extends Controller
         //salvando os dados na base de dados, todo objeto criado em laravel, por omissão tem um metodo save()
         $delivery->save();
 
-        return redirect ('/');
+        return redirect ('/'); 
+    }
+
+    public function showDelivers(){
+
+   
+        $user = auth()->user();//verificar autentificação do utilizador
+        $userId = $user->id;//variavel userId recebe o identificador do
+        $delivers = DB::table('delivers')
+        ->join('orders','delivers.order_id','=','orders.id')
+        ->where('orders.user_id', $userId);
         
+       /* $orders = DB::table('orders')
+        ->join('products','orders.product_id','=','products.id')
+        ->where('orders.user_id',$userId)
+        ->get();*/
+
+        return view ('delivers',['delivers'=>$delivers]);
+        //return view($delivers);    
     }
 }

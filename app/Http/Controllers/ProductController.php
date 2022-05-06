@@ -192,7 +192,7 @@ class ProductController extends Controller
     public function myOrders(){
         $user = auth()->user();//verificar autentificação do utilizador
         $userId = $user->id;//variavel userId recebe o identificador do
-       $orders = DB::table('orders')
+        $orders = DB::table('orders')
         ->join('products','orders.product_id','=','products.id')
         ->where('orders.user_id',$userId)
         ->get();
@@ -247,10 +247,6 @@ class ProductController extends Controller
     public function perfil(){
         return view ('perfil');
 
-    }
-
-    public function dashboard(){
-        return view ('dashboard');
     }
 
     public function productlist(){
